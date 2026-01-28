@@ -1,0 +1,31 @@
+# Docker Compose untuk easy deployment
+version: '3.8'
+
+services:
+  telegram-mention-bot:
+    build: .
+    container_name: mention_bot
+    restart: unless-stopped
+    environment:
+      - API_ID=${API_ID}
+      - API_HASH=${API_HASH}
+      - BOT_TOKEN=${BOT_TOKEN}
+      - OWNER_ID=${OWNER_ID}
+      - SESSION_STRING=${SESSION_STRING}
+      - DATABASE_URL=/app/data/mention_bot.db
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    networks:
+      - bot_network
+    # Optional: expose port for web interface
+    # ports:
+    #   - "8080:8080"
+
+networks:
+  bot_network:
+    driver: bridge
+
+volumes:
+  bot_data:
+    driver: local

@@ -1,0 +1,6 @@
+aiosqlite
+pyrofork
+tgcrypto-pyrofork
+python-dotenv
+aiohttp
+pytz
